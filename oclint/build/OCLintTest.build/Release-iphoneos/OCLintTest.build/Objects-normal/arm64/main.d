@@ -1,2 +1,2 @@
-dependencies: /Users/chuxiao/Documents/Test/OCLintTest/OCLintTest/main.m \
-  /Users/chuxiao/Documents/Test/OCLintTest/OCLintTest/AppDelegate.h
+dependencies: /Users/vova/Desktop/OCLintTest/OCLintTest/main.m \
+  /Users/vova/Desktop/OCLintTest/OCLintTest/AppDelegate.h

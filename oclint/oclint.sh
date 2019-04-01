@@ -1,3 +1,4 @@
+#!/bin/sh
 source ~/.bash_profile
  #获取项目路径
  PROJECT_DIR=$(cd `dirname $0`;cd ..;pwd)

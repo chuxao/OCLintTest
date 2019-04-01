@@ -73,6 +73,28 @@
 			name = OCLint6;
 			productName = OCLint6;
 		};
+		80A1448B2251A94B002B41D0 /* Envir */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 80A1448E2251A94B002B41D0 /* Build configuration list for PBXAggregateTarget "Envir" */;
+			buildPhases = (
+				80A144942251A9CC002B41D0 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Envir;
+			productName = Envir;
+		};
+		80A1448F2251A95D002B41D0 /* OCLint22 */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 80A144902251A95D002B41D0 /* Build configuration list for PBXAggregateTarget "OCLint22" */;
+			buildPhases = (
+				80A144932251A975002B41D0 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = OCLint22;
+			productName = OCLint22;
+		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
@@ -280,6 +302,12 @@
 					3A6AFBE4224DF98600F1A3B0 = {
 						CreatedOnToolsVersion = 10.1;
 					};
+					80A1448B2251A94B002B41D0 = {
+						CreatedOnToolsVersion = 10.0;
+					};
+					80A1448F2251A95D002B41D0 = {
+						CreatedOnToolsVersion = 10.0;
+					};
 				};
 			};
 			buildConfigurationList = 3A4021CE224CA99700BE92B2 /* Build configuration list for PBXProject "OCLintTest" */;
@@ -303,6 +331,8 @@
 				3A6AFBDA224DEDAC00F1A3B0 /* OCLint4 */,
 				3A6AFBDF224DF79E00F1A3B0 /* OCLint5 */,
 				3A6AFBE4224DF98600F1A3B0 /* OCLint6 */,
+				80A1448B2251A94B002B41D0 /* Envir */,
+				80A1448F2251A95D002B41D0 /* OCLint22 */,
 			);
 		};
 /* End PBXProject section */
@@ -355,8 +385,8 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\nmyworkspace=OCLintTest.xcworkspace # 替换workspace的名字\nmyscheme=OCLintTest # 替换scheme的名字\nxcodebuild -workspace $myworkspace -scheme $myscheme clean&&\nxcodebuild -workspace $myworkspace -scheme $myscheme \\\n-configuration Debug \\\n| xcpretty -r json-compilation-database -o compile_commands.json&&\noclint-json-compilation-database -e Pods -- \\\n-report-type html -o oclint_result.html \\\n-rc LONG_LINE=200 \\\n-max-priority-1=100000 \\\n-max-priority-2=100000 \\\n-max-priority-3=100000; \\\n#rm compile_commands.json;\nif [ -f ./oclint_result.html ]; then echo '-----分析完毕-----'\nelse echo \"-----分析失败-----\"; fi\n";
+			shellPath = /bin/bash;
+			shellScript = "#!/bin/bash\nsource ~/.bash_profile\necho 'aaaaa'\necho $(whoami)\n\nfile /usr/local/bin/xcpretty\necho 'bbbb'\nfile /Users/vova/.rvm/rubies/ruby-2.4.2/bin/xcpretty\necho 'cdcccc'\n\n\n\nmyworkspace=OCLintTest.xcworkspace \nmyscheme=OCLintTest \nxcodebuild -workspace $myworkspace -scheme $myscheme clean&&\nxcodebuild -workspace $myworkspace -scheme $myscheme \\\n-configuration Debug \\\n| xcpretty -r json-compilation-database >> compile_commands.json&&\noclint-json-compilation-database -e Pods -- \\\n-report-type html >> oclint_result.html \\\n-rc LONG_LINE=200 \\\n-max-priority-1=100000 \\\n-max-priority-2=100000 \\\n-max-priority-3=100000; \\\n#rm compile_commands.json;\nif [ -f ./oclint_result.html ]; then echo '-----分析完毕-----'\nelse echo \"-----分析失败-----\"; fi\n\n\n\n#cd $SRCROOT\n\n#CURDIR=\"`pwd`\"/\"`dirname $0`\"\n#echo 'aaaaaaaaaaaa'\n#echo $CURDIR\n#/Users/vova/.rvm/rubies/ruby-2.4.2/bin/\n";
 		};
 		3A402208224CAA9000BE92B2 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -374,7 +404,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\nif [ -f ~/.bash_profile ]; then\nsource ~/.bash_profile\nfi\n\nhash oclint &> /dev/null\nif [ $? -eq 1 ]; then\necho >&2 \"oclint not found, analyzing stopped\"\nexit 1\nfi\n\ncd ${SRCROOT}\nxcodebuild -target OCLintTest -configuration <Debug|Release> -scheme OCLintTest -dry-run | xcpretty -r json-compilation-database\noclint-json-compilation-database -- -report-type xcode\n";
+			shellScript = "#!/bin/sh\nif [ -f ~/.bash_profile ]; then\nsource ~/.bash_profile\nfi\n\nhash oclint &> /dev/null\nif [ $? -eq 1 ]; then\necho >&2 \"oclint not found, analyzing stopped\"\nexit 1\nfi\n\ncd ${SRCROOT}\nxcodebuild -target OCLintTest -configuration <Debug|Release> -scheme OCLintTest -dry-run | xcpretty -r json-compilation-database\noclint-json-compilation-database -- -report-type xcode\n";
 		};
 		3A6AFBD7224CB9C500F1A3B0 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -409,7 +439,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "source ~/.bash_profile\ncd ${SRCROOT}\n#xcodebuild clean\nxcodebuild | xcpretty -r json-compilation-database\noclint-json-compilation-database -- -report-type xcode\n";
+			shellScript = "#!/bin/sh\nsource ~/.bash_profile\ncd ${SRCROOT}\n#xcodebuild clean\nxcodebuild | xcpretty -r json-compilation-database\noclint-json-compilation-database -- -report-type xcode\n";
 		};
 		3A6AFBE3224DF7A300F1A3B0 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -443,7 +473,42 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "xcodebuild -scheme OCLintTest -workspace OCLintTest.xcworkspace clean && xcodebuild -scheme OCLintTest -workspace OCLintTest.xcworkspace -configuration Debug | xcpretty -r json-compilation-database -o compile_commands.json\n";
+			shellScript = "#!/bin/sh\nxcodebuild -scheme OCLintTest -workspace OCLintTest.xcworkspace clean && xcodebuild -scheme OCLintTest -workspace OCLintTest.xcworkspace -configuration Debug | xcpretty -r json-compilation-database >> compilation_db.json\n";
+		};
+		80A144932251A975002B41D0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/sh\nmyworkspace=OCLintTest.xcworkspace # 替换workspace的名字\nmyscheme=OCLintTest # 替换scheme的名字\nxcodebuild -workspace $myworkspace -scheme $myscheme clean&&\nxcodebuild -workspace $myworkspace -scheme $myscheme \\\n-configuration Debug \\\n| xcpretty -r json-compilation-database >> compile_commands.json&&\noclint-json-compilation-database -e Pods -- \\\n-report-type html >> oclint_result.html \\\n-rc LONG_LINE=200 \\\n-max-priority-1=100000 \\\n-max-priority-2=100000 \\\n-max-priority-3=100000; \\\n#rm compile_commands.json;\nif [ -f ./oclint_result.html ]; then echo '-----分析完毕-----'\nelse echo \"-----分析失败-----\"; fi\n";
+		};
+		80A144942251A9CC002B41D0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "env
+";
 		};
 		E42417937A98ED434556B188 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -651,8 +716,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULE_DEBUGGING = YES;
 				CODE_SIGN_STYLE = Manual;
+				COMPILER_INDEX_STORE_ENABLE = NO;
 				DEVELOPMENT_TEAM = T2QU29BK2U;
 				INFOPLIST_FILE = OCLintTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -671,8 +738,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULE_DEBUGGING = YES;
 				CODE_SIGN_STYLE = Manual;
+				COMPILER_INDEX_STORE_ENABLE = NO;
 				DEVELOPMENT_TEAM = T2QU29BK2U;
 				INFOPLIST_FILE = OCLintTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -774,6 +843,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -782,6 +852,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -791,6 +862,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULE_DEBUGGING = YES;
 				CODE_SIGN_STYLE = Automatic;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -800,6 +872,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULE_DEBUGGING = YES;
 				CODE_SIGN_STYLE = Automatic;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -808,11 +881,45 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
 		3A6AFBE7224DF98600F1A3B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		80A1448C2251A94B002B41D0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		80A1448D2251A94B002B41D0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		80A144912251A95D002B41D0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		80A144922251A95D002B41D0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -900,6 +1007,24 @@
 			buildConfigurations = (
 				3A6AFBE6224DF98600F1A3B0 /* Debug */,
 				3A6AFBE7224DF98600F1A3B0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		80A1448E2251A94B002B41D0 /* Build configuration list for PBXAggregateTarget "Envir" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				80A1448C2251A94B002B41D0 /* Debug */,
+				80A1448D2251A94B002B41D0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		80A144902251A95D002B41D0 /* Build configuration list for PBXAggregateTarget "OCLint22" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				80A144912251A95D002B41D0 /* Debug */,
+				80A144922251A95D002B41D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
