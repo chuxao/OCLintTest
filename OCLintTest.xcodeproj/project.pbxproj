@@ -101,6 +101,7 @@
 		3A0EE363225450A80001DD1A /* OLFirstModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0EE362225450A80001DD1A /* OLFirstModule.m */; };
 		3A0EE366225450B70001DD1A /* OLFirstLib.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0EE365225450B70001DD1A /* OLFirstLib.m */; };
 		3A0EE369225450C30001DD1A /* OLFirstTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0EE368225450C30001DD1A /* OLFirstTool.m */; };
+		3A0EE36D2254585B0001DD1A /* OLSecondTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0EE36C2254585B0001DD1A /* OLSecondTool.m */; };
 		3A4021D8224CA99700BE92B2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4021D7224CA99700BE92B2 /* AppDelegate.m */; };
 		3A4021DB224CA99700BE92B2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4021DA224CA99700BE92B2 /* ViewController.m */; };
 		3A4021DE224CA99700BE92B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A4021DC224CA99700BE92B2 /* Main.storyboard */; };
@@ -131,6 +132,8 @@
 		3A0EE365225450B70001DD1A /* OLFirstLib.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLFirstLib.m; sourceTree = "<group>"; };
 		3A0EE367225450C30001DD1A /* OLFirstTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLFirstTool.h; sourceTree = "<group>"; };
 		3A0EE368225450C30001DD1A /* OLFirstTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLFirstTool.m; sourceTree = "<group>"; };
+		3A0EE36B2254585B0001DD1A /* OLSecondTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLSecondTool.h; sourceTree = "<group>"; };
+		3A0EE36C2254585B0001DD1A /* OLSecondTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLSecondTool.m; sourceTree = "<group>"; };
 		3A4021D3224CA99700BE92B2 /* OCLintTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OCLintTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A4021D6224CA99700BE92B2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3A4021D7224CA99700BE92B2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -182,6 +185,7 @@
 		3A0EE35F2254502E0001DD1A /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				3A0EE36A2254583D0001DD1A /* SecondTools */,
 				3A0EE367225450C30001DD1A /* OLFirstTool.h */,
 				3A0EE368225450C30001DD1A /* OLFirstTool.m */,
 			);
@@ -196,6 +200,15 @@
 			);
 			path = Module;
 			sourceTree = SOURCE_ROOT;
+		};
+		3A0EE36A2254583D0001DD1A /* SecondTools */ = {
+			isa = PBXGroup;
+			children = (
+				3A0EE36B2254585B0001DD1A /* OLSecondTool.h */,
+				3A0EE36C2254585B0001DD1A /* OLSecondTool.m */,
+			);
+			path = SecondTools;
+			sourceTree = "<group>";
 		};
 		3A4021CA224CA99700BE92B2 = {
 			isa = PBXGroup;
@@ -595,6 +608,7 @@
 				3A4021DB224CA99700BE92B2 /* ViewController.m in Sources */,
 				3A4021E6224CA99900BE92B2 /* main.m in Sources */,
 				3A0EE366225450B70001DD1A /* OLFirstLib.m in Sources */,
+				3A0EE36D2254585B0001DD1A /* OLSecondTool.m in Sources */,
 				3A4021D8224CA99700BE92B2 /* AppDelegate.m in Sources */,
 				3A0EE363225450A80001DD1A /* OLFirstModule.m in Sources */,
 				3A0EE369225450C30001DD1A /* OLFirstTool.m in Sources */,

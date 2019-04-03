@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface OLSecondTool : NSObject
 
+- (void * (^)())priorityLow;
+    
 @end
 
 NS_ASSUME_NONNULL_END
